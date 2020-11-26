@@ -1,0 +1,28 @@
+
+
+
+<div [hidden]="moviesList" class="content-center" style="margin: 0 auto;margin-top: 30%; margin-bottom: 30%;">
+  <div class="container">
+    <app-progress-spinner-configurable-example></app-progress-spinner-configurable-example>
+  </div>
+</div>
+
+
+
+<div *ngIf="moviesList" class="page-header" data-parallax="true" style="background-image: url('../assets/img/37975.jpg');">
+  <div class="filter"></div>
+  <div class="container">
+    <div class="motto text-center">
+      <h1>{{ listName }}</h1>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="moviesList" class="container" >
+  <div class="card-deck">
+    <div *ngFor="let movie of moviesList">
+      <app-movie [movie]="movie"></app-movie>
+    </div>
+  </div>
+</div>
+

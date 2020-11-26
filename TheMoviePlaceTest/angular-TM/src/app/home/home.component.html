@@ -1,0 +1,96 @@
+<style>
+  @keyframes mymove {
+  from {left: 0px;}
+  to {left: 300px;}
+}
+div.anim{
+  animation: mymove 5s infinite;
+}
+#div3 {animation-timing-function: ease-in;}
+
+</style>
+
+<body class="index-page sidebar-collapse">
+
+  <div class="page-header section-dark" style="background-image: url('./assets/img/37961.jpg')">
+    <div class="filter"></div>
+    <div class="content-center">
+      <div class="container">
+        <div class="title-brand">
+          <h1 class="presentation-title">The Movie Place</h1>
+          <div class="fog-low">
+            <img src="./assets/img/fog-low.png" alt="">
+          </div>
+          <div class="fog-low right">
+            <img src="./assets/img/fog-low.png" alt="">
+          </div>
+          <div id="div3" class="fog-low right anim">
+            <img src="./assets/img/fog-low.png" alt="">
+          </div>
+        </div>
+        <h2 class="presentation-subtitle text-center">Glutted with information of all your favourite movies! </h2>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="section pt-o" id="carousel">
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-8 ml-auto mr-auto">
+
+          <div class="title" style="margin: 0 auto">
+            <h3 style="text-align: center;margin: 30px;">{{listName}}</h3>
+          </div>
+
+          <div [hidden]="moviesList">
+            <div class="container" >
+              <app-progress-spinner-configurable-example></app-progress-spinner-configurable-example>
+            </div>
+          </div>
+
+          <div *ngIf="moviesList" class="card page-carousel">
+
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+              <div class="carousel-inner" role="listbox" style="padding-bottom: 8px;">
+                <div *ngFor="let movie of moviesList;  let i = index"
+                  class="carousel-item {{ (i == 0) ? 'active' : ''}}">
+                  <img class="d-block img-fluid"
+                    src="https://image.tmdb.org/t/p/w1920_and_h800_multi_faces{{movie.backdrop_path}}"
+                    alt="Second slide">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5><b>{{movie.title}}</b></h5>
+                  </div>
+                  <ol class="right carousel-indicators " style="padding: 0px; margin:10px"><button type="button"
+                      class="btn btn-outline-danger btn-round" style="border: none; outline: none;"
+                      [routerLink]="['/moviedetail', movie.id]"><i class="fa fa-align-left" aria-hidden="true"></i>
+                    </button></ol>
+                </div>
+
+              </div>
+
+              <a class="left carousel-control carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                data-slide="prev">
+                <span class="fa fa-angle-left"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="right carousel-control carousel-control-next" href="#carouselExampleIndicators" role="button"
+                data-slide="next">
+                <span class="fa fa-angle-right"></span>
+                <span class="sr-only">Next</span>
+              </a>
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</body>
