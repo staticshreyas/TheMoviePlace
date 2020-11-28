@@ -1,0 +1,224 @@
+<style>
+  div.custom_bg {
+    background-image: linear-gradient(to right, rgba(11.76%, 15.29%, 17.25%, 1.00) 150px, rgba(19.61%, 21.96%, 23.53%, 0.84) 100%);
+  }
+
+  .certification {
+    border: 1px solid rgb(255, 255, 255);
+    padding: 5px;
+    min-width: 3px;
+    color: rgb(255, 255, 255);
+  }
+
+  @media only screen and (min-width: 767px) {
+    .r-pos {
+      position: relative;
+      bottom: 120px
+    }
+    .spin{
+      padding: 0px;
+
+    }
+
+    @media only screen and (max-width: 990px) {
+      .r-pos {
+        position: relative;
+        bottom: 120px;
+        right: 30px
+      }
+    }
+  }
+
+  .bs-example{
+    	margin: 20px;
+    }
+    .modal-content iframe{
+        margin: 0 auto;
+        display: block;
+    }
+
+</style>
+
+
+<div [hidden]="movie">
+  <div class="container spin" style="margin: 0 auto;margin-top: 30%; margin-bottom: 30%; padding-top: 10%;padding-bottom: 10%;">
+    <app-progress-spinner-configurable-example></app-progress-spinner-configurable-example>
+  </div>
+</div>
+
+
+
+
+<div *ngIf="movie" class="page-header" data-parallax="true"
+  style="background-image: url('https://image.tmdb.org/t/p/w1920_and_h800_multi_faces{{movie.backdrop_path}}'); image-rendering: crisp-edges;">
+  <div class="filter"></div>
+  <div class="container" style="margin-top: 40px; padding-top: 25px;">
+    <div class="motto text-center">
+      <h1>{{movie.title}} ({{date}})</h1>
+      <h5 style="padding-top: 20px;"><b>OVERVIEW</b></h5>
+      <p><b>{{movie.tagline}}</b></p>
+
+      <p>
+        {{movie.overview}}
+      </p>
+
+      <div class="row" style="margin: 20px; justify-content: center;">
+        <p>
+          <span *ngIf="certification" class="certification" style="font-size: 15px;">
+            <b>{{certification}}</b>
+          </span>
+          <span *ngIf="certification">
+            <b> &#183; </b>
+          </span>
+          <span style="font-size: 15px;">
+            <b>{{date2}} ({{movie.original_language}}) &#183; </b>
+          </span>
+          <span *ngFor="let genre of movie.genres">
+            <b> {{genre.name}} &#183; </b>
+          </span>
+          <span style="font-size: 15px;">
+            <b>{{movie.runtime}}m</b>
+          </span>
+        </p>
+      </div>
+
+      <div class="row" style="margin: 20px; justify-content: center;">
+
+       <!-- <div class="col-md-3">
+          <button mtype="button" class="btn btn-outline-danger btn-round">
+            <i class="fa fa-bookmark" aria-hidden="true"></i>
+          </button>
+          <p style="color: white;">Add To Watchlist</p>
+
+        </div>-->
+        <div class="col-md-3">
+          <a href="https://www.youtube.com/watch?v={{trailer}}">
+            <button mtype="button" class="btn btn-outline-danger btn-round">
+              <i class="fa fa-play" aria-hidden="true"></i>
+            </button>
+            <p style="color: white;">Play trailer</p>
+
+          </a>
+
+        </div>
+
+
+      </div>
+
+
+
+      <div class="row">
+        <div class="col-md-3 r-pos">
+          <h5 style="padding-top: 20px;">RATING</h5>
+          <circle-progress [percent]="movie.vote_average*10" [radius]="40" [outerStrokeWidth]="10"
+            [innerStrokeWidth]="8" [outerStrokeColor]="'#78C000'" [innerStrokeColor]="'#C7E596'" [animation]="true"
+            [animationDuration]="300">
+          </circle-progress>
+        </div>
+        <div *ngIf="director[0]" class="col-md-3">
+          <h5 style="padding-top: 20px;"><b>{{director[0].name}}</b></h5>
+          <p>DIRECTOR</p>
+        </div>
+
+        <div *ngIf="screenplay[0]" class="col-md-3">
+          <h5 style="padding-top: 20px;"><b>{{screenplay[0].name}}</b></h5>
+          <p>SCREENPLAY</p>
+        </div>
+
+        <div *ngIf="producer[0]" class="col-md-3">
+          <h5 style="padding-top: 20px;"><b>{{producer[0].name}}</b></h5>
+          <p>PRODUCER</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div *ngIf="movie">
+  <div class="section text-center">
+    <div class="container">
+      <h2>Top Billed Cast</h2>
+      <div *ngFor="let Cast of cast; let i = index">
+        <div *ngIf="i % 3 == 0" class="row">
+          <div *ngIf="cast[i]" class="col-md-4">
+            <div class="card card-profile card-plain">
+              <div style="height: fit-content;">
+                <img style="image-rendering: pixelated;"
+                  src="https://image.tmdb.org/t/p/w276_and_h350_face{{cast[i].profile_path}}" class="img-circle"
+                  alt="..." />
+
+              </div>
+              <div class="card-body">
+                <a href="#paper-kit">
+                  <div class="author">
+                    <h4 class="card-title">{{cast[i].name}}</h4>
+                    <h6 class="card-category">as {{cast[i].character}}</h6>
+                  </div>
+                </a>
+
+              </div>
+              <div class="card-footer text-center">
+                <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-twitter"></i></a>
+                <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-google-plus"></i></a>
+                <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-linkedin"></i></a>
+              </div>
+            </div>
+
+
+
+          </div>
+          <div *ngIf="cast[i+1]" class="col-md-4">
+            <div class="card card-profile card-plain">
+              <div style="height: fit-content;">
+                <img style="image-rendering: pixelated;"
+                  src="https://image.tmdb.org/t/p/w276_and_h350_face{{cast[i+1].profile_path}}" class="img-circle"
+                  alt="..." />
+              </div>
+              <div class="card-body">
+                <a href="#paper-kit">
+                  <div class="author">
+                    <h4 class="card-title">{{cast[i+1].name}}</h4>
+                    <h6 class="card-category">as {{cast[i+1].character}}</h6>
+                  </div>
+                </a>
+
+              </div>
+              <div class="card-footer text-center">
+                <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-twitter"></i></a>
+                <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-google-plus"></i></a>
+                <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="cast[i+2]" class="col-md-4">
+            <div class="card card-profile card-plain">
+              <div style="height: fit-content;">
+                <img style="image-rendering: pixelated;"
+                  src="https://image.tmdb.org/t/p/w276_and_h350_face{{cast[i+2].profile_path}}" class="img-circle"
+                  alt="..." />
+              </div>
+              <div class="card-body">
+                <a href="#paper-kit">
+                  <div class="author">
+                    <h4 class="card-title">{{cast[i+2].name}}</h4>
+                    <h6 class="card-category">as {{cast[i+2].character}}</h6>
+                  </div>
+                </a>
+
+              </div>
+              <div class="card-footer text-center">
+                <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-twitter"></i></a>
+                <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-google-plus"></i></a>
+                <a href="#pablo" class="btn btn-link btn-just-icon btn-neutral"><i class="fa fa-linkedin"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

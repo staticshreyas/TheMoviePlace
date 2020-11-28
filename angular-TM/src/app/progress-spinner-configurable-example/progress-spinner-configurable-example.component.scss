@@ -1,0 +1,46 @@
+.loader {
+  position: relative;
+  width: 55px;
+  height: 55px;
+  margin: 90px auto;  
+  animation: spin 2s ease-in-out infinite;
+}
+
+.bubble-1,
+.bubble-2 {
+  position: absolute;
+  top: 0;
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+  background-color: #f5593d;
+}
+
+.bubble-2 {
+  top: auto;
+  bottom: 0;
+}
+
+.bubble-1, .bubble-2 {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.bubble-2 {
+  animation-delay: -1.0s;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate( 360deg );
+  }
+}
+
+@keyframes bounce  {
+  0%, 100% {
+    transform: scale( 0.0 );
+  }
+  
+  50% {
+    transform: scale( 1.0 );
+  }
+}

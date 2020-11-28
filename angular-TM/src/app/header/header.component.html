@@ -1,0 +1,168 @@
+<style>
+  .modal-dialog {
+    max-width: 290px;
+  }
+
+  @media (min-width: 360px) {
+    .modal-dialog {
+      width: 260px;
+    }
+  }
+
+</style>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="300">
+  <div class="container">
+    <div class="navbar-translate">
+      <div class="navbar-brand" [routerLink]="['/']" rel="tooltip" data-placement="bottom" target="_blank">
+        The Movie Place
+      </div>
+      <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+        aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-bar bar1"></span>
+        <span class="navbar-toggler-bar bar2"></span>
+        <span class="navbar-toggler-bar bar3"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse justify-content-end" id="navigation">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" rel="tooltip" title="Popular" data-placement="bottom" [routerLink]="['/popular']">
+
+            <i class="fa fa-fire" aria-hidden="true"></i>
+            <p class="d-lg-none">Popular</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" rel="tooltip" title="Top Rated" data-placement="bottom" [routerLink]="['/top_rated']">
+
+            <i class="fa fa-star" aria-hidden="true"></i>
+            <p class="d-lg-none">Top Rated</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" rel="tooltip" title="Upcoming" data-placement="bottom" [routerLink]="['/upcoming']">
+
+            <i class="fa fa-calendar-check-o" aria-hidden="true"></i>
+            <p class="d-lg-none">Upcoming</p>
+          </a>
+        </li>
+
+
+        <li class="nav-item">
+          <div class="form-group" style="padding-top: 15px; padding-right: 10px ;">
+            <input type="text" class="form-control" placeholder="Search" [(ngModel)]="filter"
+              (keyup.enter)="search(filter)" name="search" type="search" [routerLink]="['/popular']">
+          </div>
+        </li>
+
+ <!--       <li class="nav-item">
+          <button type="button" class="btn btn-outline-danger btn-round" data-toggle="modal" data-target="#myModal">
+            Login
+          </button>
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true" style="padding: 45px">
+            <div class="modal-dialog" role="document">
+
+              <div id="dt" class="modal-content">
+
+                <div class="row">
+                  <div class="mx-auto">
+                    <div class="card card-register " id="d" style="margin: 0 auto;">
+                      <h3 class="title mx-auto">Welcome</h3>
+                      <form class="register-form">
+                        <label>Email</label>
+                        <div class="input-group form-group-no-border">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="nc-icon nc-email-85"></i>
+                            </span>
+                          </div>
+                          <input type="email" class="form-control" placeholder="Email">
+                        </div>
+                        <label>Password</label>
+                        <div class="input-group form-group-no-border">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="nc-icon nc-key-25"></i>
+                            </span>
+                          </div>
+                          <input type="password" class="form-control" placeholder="Password">
+                        </div>
+                        <button class="btn btn-danger btn-block btn-round">Login</button>
+                      </form>
+                      <div class="forgot">
+                        <a href="#" signup class="btn btn-link btn-danger" data-dismiss="modal" data-toggle="modal"
+                          data-target="#signup">Don't have an account?</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item">
+          <button type="button" class="btn btn-outline-danger btn-round" data-toggle="modal" data-target="#signup">
+            Sign Up
+          </button>
+          <div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true" style="padding: 45px">
+            <div class="modal-dialog" role="document">
+
+              <div class="modal-content">
+
+                <div class="row">
+                  <div class="mx-auto">
+                    <div class="card card-register" style="margin: 0 auto;">
+                      <h3 class="title mx-auto">Sign Up</h3>
+                      <form class="register-form">
+                        <label>Name</label>
+                        <div class="input-group form-group-no-border">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="nc-icon nc-single-02"></i>
+                            </span>
+                          </div>
+                          <input type="email" class="form-control" placeholder="Name">
+                        </div>
+                        <label>Email</label>
+                        <div class="input-group form-group-no-border">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="nc-icon nc-email-85"></i>
+                            </span>
+                          </div>
+                          <input type="email" class="form-control" placeholder="Email">
+                        </div>
+                        <label>Password</label>
+                        <div class="input-group form-group-no-border">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="nc-icon nc-key-25"></i>
+                            </span>
+                          </div>
+                          <input type="password" class="form-control" placeholder="Password">
+                        </div>
+                        <button class="btn btn-danger btn-block btn-round">Register</button>
+                      </form>
+                      <div class="forgot">
+                        <a href="#myModal" class="btn btn-link btn-danger" data-dismiss="modal" data-toggle="modal"
+                          data-target="#myModal">Have an account?</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </li>-->
+
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- End Navbar -->
