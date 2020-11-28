@@ -9,6 +9,37 @@ const apiURL = 'https://api.themoviedb.org/', apiKey = '?api_key=88f0fe9d183ce85
 const port = 3000;
 var credits=[];
 
+//Get Movie Lists
+app.get('/getMovieList', (req, res) => {
+    var category=req.query.mov;
+    //console.log(movie)
+    axios.get(apiURL + '3/movie/'+category+apiKey)
+    .then((resp)=>{
+        movieList=resp.data;
+        res.send(movieList);
+    })
+    .catch((e)=>{
+        console.log(e)
+    })
+    
+})
+
+//Get Movie
+app.get('/getMovie', (req, res) => {
+    var id=req.query.mov;
+    //console.log(movie)
+    axios.get(apiURL + '3/movie/' +id+ apiKey+ "&language=en-US")
+    .then((resp)=>{
+        movie=resp.data;
+        res.send(movie);
+    })
+    .catch((e)=>{
+        console.log(e)
+    })
+    
+})
+
+//Get Movie Credits
 app.get('/getCredits', (req, res) => {
     var movie=req.query.mov;
     //console.log(movie)

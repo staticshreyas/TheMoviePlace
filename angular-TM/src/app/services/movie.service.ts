@@ -21,12 +21,20 @@ export class MovieService {
     private processHTTPMsgService: ProcessHTTPMsgService) { }
 
 
-   getList(category): Observable<Movie[]> {
-    return this.http.get<Movie[]>(apiURL + '3/movie/' + category + apiKey) 
-    .pipe(delay(2000))    
-    .pipe(catchError(this.processHTTPMsgService.handleError));
-    ;
-  }
+    getList(category): Observable<Movie[]> {
+      return this.http.get<Movie[]>("http://localhost:3000/getMovieList", {params: {mov:category}}) 
+      .pipe(delay(2000))    
+      .pipe(catchError(this.processHTTPMsgService.handleError));
+      ;
+    }
+
+  //  getList(category): Observable<Movie[]> {
+  //   return this.http.get<Movie[]>(apiURL + '3/movie/' + category + apiKey) 
+  //   .pipe(delay(2000))    
+  //   .pipe(catchError(this.processHTTPMsgService.handleError));
+  //   ;
+  // }
+
   getImageBaseUrl() {
     return imageBaseurl;
    }
@@ -34,7 +42,6 @@ export class MovieService {
   //  getCredits(movie): Observable<any>{
   //    return this.http.get<any>(apiURL + '3/movie/'+movie+"/credits"+apiKey)
   //    .pipe(catchError(this.processHTTPMsgService.handleError));
-
   //  }
 
    getCredits(movie): Observable<any>{
@@ -42,9 +49,6 @@ export class MovieService {
     .pipe(catchError(this.processHTTPMsgService.handleError));
 
   }
-
-   
-
 
   search(query) {
     query = this.convertToSlug(query);
@@ -62,11 +66,18 @@ export class MovieService {
   }
 
   getMovie(id){
-    return this.http.get( apiURL + '3/movie/' +id+ apiKey+ "&language=en-US")
+    return this.http.get( "http://localhost:3000/getCredits", {params: {mov:id}})
     .pipe(delay(3000))     
     .pipe(catchError(this.processHTTPMsgService.handleError));
 
   }
+
+  // getMovie(id){
+  //   return this.http.get( apiURL + '3/movie/' +id+ apiKey+ "&language=en-US")
+  //   .pipe(delay(3000))     
+  //   .pipe(catchError(this.processHTTPMsgService.handleError));
+
+  // }
 
   getCertification(id){
     return this.http.get( apiURL + '3/movie/' +id+ "/release_dates" + apiKey)
