@@ -66,7 +66,7 @@ export class MovieService {
   }
 
   getMovie(id){
-    return this.http.get( "http://localhost:3000/getCredits", {params: {mov:id}})
+    return this.http.get( "http://localhost:3000/getMovie", {params: {mov:id}})
     .pipe(delay(3000))     
     .pipe(catchError(this.processHTTPMsgService.handleError));
 
@@ -80,16 +80,27 @@ export class MovieService {
   // }
 
   getCertification(id){
-    return this.http.get( apiURL + '3/movie/' +id+ "/release_dates" + apiKey)
+    return this.http.get( "http://localhost:3000/getCertificate", {params: {mov:id}})
     .pipe(catchError(this.processHTTPMsgService.handleError));
-
   }
+
+  // getCertification(id){
+  //   return this.http.get( apiURL + '3/movie/' +id+ "/release_dates" + apiKey)
+  //   .pipe(catchError(this.processHTTPMsgService.handleError));
+
+  // }
 
   getTrailer(id){
-    return this.http.get( apiURL + '3/movie/' +id+ "/videos" + apiKey)
+    return this.http.get( "http://localhost:3000/getTrailer", {params: {mov:id}})
     .pipe(catchError(this.processHTTPMsgService.handleError));
 
   }
+
+  // getTrailer(id){
+  //   return this.http.get( apiURL + '3/movie/' +id+ "/videos" + apiKey)
+  //   .pipe(catchError(this.processHTTPMsgService.handleError));
+
+  // }
 
 }
 
