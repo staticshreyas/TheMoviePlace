@@ -22,7 +22,7 @@ export class MovieService {
 
 
     getList(category): Observable<Movie[]> {
-      return this.http.get<Movie[]>("http://localhost:3000/getMovieList", {params: {mov:category}}) 
+      return this.http.get<Movie[]>("https://themovieplace-backend.herokuapp.com/getMovieList", {params: {mov:category}}) 
       .pipe(delay(2000))    
       .pipe(catchError(this.processHTTPMsgService.handleError));
       ;
@@ -45,7 +45,7 @@ export class MovieService {
   //  }
 
    getCredits(movie): Observable<any>{
-    return this.http.get<any>("http://localhost:3000/getCredits", {params: {mov:movie}})
+    return this.http.get<any>("https://themovieplace-backend.herokuapp.com/getCredits", {params: {mov:movie}})
     .pipe(catchError(this.processHTTPMsgService.handleError));
 
   }
@@ -66,7 +66,7 @@ export class MovieService {
   }
 
   getMovie(id){
-    return this.http.get( "http://localhost:3000/getMovie", {params: {mov:id}})
+    return this.http.get( "https://themovieplace-backend.herokuapp.com/getMovie", {params: {mov:id}})
     .pipe(delay(3000))     
     .pipe(catchError(this.processHTTPMsgService.handleError));
 
@@ -80,7 +80,7 @@ export class MovieService {
   // }
 
   getCertification(id){
-    return this.http.get( "http://localhost:3000/getCertificate", {params: {mov:id}})
+    return this.http.get( "https://themovieplace-backend.herokuapp.com/getCertificate", {params: {mov:id}})
     .pipe(catchError(this.processHTTPMsgService.handleError));
   }
 
@@ -91,7 +91,7 @@ export class MovieService {
   // }
 
   getTrailer(id){
-    return this.http.get( "http://localhost:3000/getTrailer", {params: {mov:id}})
+    return this.http.get( "https://themovieplace-backend.herokuapp.com/getTrailer", {params: {mov:id}})
     .pipe(catchError(this.processHTTPMsgService.handleError));
 
   }
