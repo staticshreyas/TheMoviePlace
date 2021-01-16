@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit() {
         this.getList("now_playing");
-        
+   
   }
 
   getList(category) {

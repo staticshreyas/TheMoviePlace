@@ -54,6 +54,35 @@ app.get('/getCredits', (req, res) => {
     
 })
 
+//Get Movie Certification
+app.get('/getCertificate', (req, res) => {
+    var id=req.query.mov;
+    //console.log(movie)
+    axios.get( apiURL + '3/movie/' +id+ "/release_dates" + apiKey)
+    .then((resp)=>{
+        certificate=resp.data;
+        res.send(certificate);
+    })
+    .catch((e)=>{
+        console.log(e)
+    })
+    
+})
+
+//Get Movie Trailer
+app.get('/getTrailer', (req, res) => {
+    var id=req.query.mov;
+    //console.log(movie)
+    axios.get( apiURL + '3/movie/' +id+ "/videos" + apiKey)
+    .then((resp)=>{
+        certificate=resp.data;
+        res.send(certificate);
+    })
+    .catch((e)=>{
+        console.log(e)
+    })
+    
+})
 
 app.listen(port, () => {
   console.log(` Node backend running at  at http://localhost:${port}`)
