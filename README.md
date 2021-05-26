@@ -1,6 +1,6 @@
 <div align="center">
  
-
+![LOGO](./logo.png)
 
 <h1 align="center">The Movie Place</h1>
 
